@@ -63,7 +63,7 @@ export default function Benchmark() {
           {/* Other solutions card */}
           <div style={{ width: 460, borderRadius: 20, backgroundColor: "#e8e4e2", padding: 2 }}>
             <div style={{ padding: "30px 24px" }}>
-              <p style={{ fontSize: 24, fontWeight: 700, color: "#1e1e1e" }}>
+              <p style={{ fontSize: 24, fontWeight: 700, color: "#1e1e1e", textAlign: "center" }}>
                 OTHER SOLUTIONS
               </p>
             </div>
@@ -125,11 +125,12 @@ export default function Benchmark() {
               style={{
                 backgroundColor: "#fff",
                 borderRadius: 18,
+                height: "100%",
               }}
             >
               {/* Top section - logo */}
               <div style={{ padding: "20px 24px" }}>
-                <img src="/images/logo.png" alt="Vocals" style={{ height: 24 }} />
+                <img src="/images/logo.png" alt="Vocals" style={{ height: 48, margin: "0 auto" }} />
               </div>
               {/* Bottom section - items */}
               <div
@@ -166,13 +167,14 @@ export default function Benchmark() {
         {/* Contact button */}
         <a
           href="#contact"
-          className="flex items-center justify-center text-white hover:opacity-90 transition-opacity"
+          className="flex items-center justify-center hover:opacity-90 transition-opacity"
           style={{
             backgroundColor: "#111",
             borderRadius: 8,
             padding: "12px 14px",
             fontSize: 14,
             fontWeight: 600,
+            color: "#fff",
           }}
         >
           Contact
