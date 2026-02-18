@@ -35,6 +35,7 @@ Thumbs.db
 
 # Screenshots (dev artifacts)
 *.png
+*.jpg
 !public/**/*.png
 !src/assets/**/*.png
 
