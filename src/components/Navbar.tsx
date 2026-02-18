@@ -14,7 +14,8 @@ export default function Navbar() {
       <nav
         className="flex items-center justify-between w-full transition-all duration-300"
         style={{
-          maxWidth: 1111,
+          maxWidth: 1080,
+          width: "80%",
           height: 72,
           padding: "10px 20px",
           borderRadius: 12,
@@ -23,13 +24,13 @@ export default function Navbar() {
         }}
       >
         <a href="#hero">
-          <img src="/images/logo.png" alt="Vocals" className="h-[42px] w-[120px]" />
+          <img src="/images/logo.png" alt="Vocals" className="w-[120px]" />
         </a>
 
         <div className="flex items-center gap-3">
           <a
             href="#contact"
-            className="flex items-center justify-center text-white hover:opacity-90 transition-opacity"
+            className="flex items-center justify-center hover:opacity-90 transition-opacity"
             style={{
               backgroundColor: "#111",
               borderRadius: 8,
@@ -37,6 +38,7 @@ export default function Navbar() {
               height: 39,
               fontSize: 14,
               fontWeight: 600,
+              color: "#fff",
             }}
           >
             Contact
