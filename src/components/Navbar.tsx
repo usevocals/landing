@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+
+const GlobeIcon = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" style={{ width: 16, height: 16, fill: "#111" }}>
+    <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm87.63,96H175.8c-1.41-28.46-10.27-55.47-25.12-77A88.2,88.2,0,0,1,215.63,120ZM128,215.89c-18.73-20.27-30.09-49-31.77-79.89h63.54C158.09,166.87,146.73,195.62,128,215.89ZM96.23,120c1.68-30.87,13-59.62,31.77-79.89,18.73,20.27,30.09,49,31.77,79.89Zm9.09-77C90.47,64.53,81.61,91.54,80.2,120H40.37A88.2,88.2,0,0,1,105.32,43ZM40.37,136H80.2c1.41,28.46,10.27,55.47,25.12,77A88.2,88.2,0,0,1,40.37,136Zm110.31,77c14.85-21.56,23.71-48.57,25.12-77h39.83A88.2,88.2,0,0,1,150.68,213Z" />
+  </svg>
+);
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [lang, setLang] = useState("en");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -43,19 +51,67 @@ export default function Navbar() {
           >
             Contact
           </a>
-          <div
-            className="flex items-center"
-            style={{ backgroundColor: "#eee", borderRadius: 12, padding: 7, height: 35 }}
-          >
-            <select
-              defaultValue="en"
-              className="bg-transparent outline-none cursor-pointer"
-              style={{ fontSize: 12, border: "none", color: "#111" }}
-            >
-              <option value="en">English</option>
-              <option value="es">Spanish</option>
-            </select>
-          </div>
+
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger asChild>
+              <button
+                className="flex items-center justify-center hover:opacity-80 transition-opacity outline-none"
+                style={{
+                  backgroundColor: "#eee",
+                  borderRadius: 12,
+                  width: 35,
+                  height: 35,
+                }}
+                aria-label={lang === "en" ? "English" : "Spanish"}
+              >
+                <GlobeIcon />
+              </button>
+            </DropdownMenu.Trigger>
+
+            <DropdownMenu.Portal>
+              <DropdownMenu.Content
+                sideOffset={8}
+                align="end"
+                style={{
+                  backgroundColor: "#fff",
+                  borderRadius: 10,
+                  padding: 4,
+                  boxShadow: "0 4px 16px rgba(0,0,0,0.12)",
+                  minWidth: 120,
+                  zIndex: 100,
+                }}
+              >
+                <DropdownMenu.Item
+                  onSelect={() => setLang("en")}
+                  className="outline-none cursor-pointer"
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: 6,
+                    fontSize: 14,
+                    fontWeight: lang === "en" ? 600 : 400,
+                    color: "#111",
+                    backgroundColor: lang === "en" ? "#f4f2f1" : "transparent",
+                  }}
+                >
+                  English
+                </DropdownMenu.Item>
+                <DropdownMenu.Item
+                  onSelect={() => setLang("es")}
+                  className="outline-none cursor-pointer"
+                  style={{
+                    padding: "8px 12px",
+                    borderRadius: 6,
+                    fontSize: 14,
+                    fontWeight: lang === "es" ? 600 : 400,
+                    color: "#111",
+                    backgroundColor: lang === "es" ? "#f4f2f1" : "transparent",
+                  }}
+                >
+                  Spanish
+                </DropdownMenu.Item>
+              </DropdownMenu.Content>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Root>
         </div>
       </nav>
     </div>
