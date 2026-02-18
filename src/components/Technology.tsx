@@ -174,9 +174,19 @@ export default function Technology() {
         </div>
 
         {/* Right - Text */}
-        <div className="flex flex-col" style={{ gap: 40 }}>
+        <div className="flex flex-col justify-center" style={{ gap: 40 }}>
           <div className="flex flex-col" style={{ gap: 10 }}>
-            <p style={{ fontSize: 16, fontWeight: 500, color: "#111" }}>
+            <p
+              style={{
+                fontSize: 16,
+                fontWeight: 500,
+                color: "#111",
+                backgroundColor: "#fff",
+                borderRadius: 100,
+                padding: "6px 14px",
+                width: "fit-content",
+              }}
+            >
               Features
             </p>
             <h2
