@@ -59,50 +59,118 @@ export default function Technology() {
             style={{ width: "100%", height: "100%", borderRadius: 20, objectFit: "cover" }}
           />
 
-          {/* Floating avatar strip */}
-          <div
-            className="absolute flex items-center"
-            style={{ bottom: 50, left: 208, gap: 6 }}
-          >
-            {[1, 2, 3, 4].map((i) => (
-              <img
-                key={i}
-                src={`/images/avatar${i}.png`}
-                alt=""
-                style={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: "50%",
-                  border: "2px solid white",
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Dark pill dial indicator */}
+          {/* Dial call pill with gradient border */}
           <div
             className="absolute flex items-center justify-center"
             style={{
-              bottom: 50,
-              left: 208,
-              width: 174,
-              height: 42,
-              backgroundColor: "#111",
+              top: "71%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              padding: 2,
               borderRadius: 100,
+              background: "linear-gradient(180deg, #ff2f2f 0%, #ef7b16 35.88%, #8a43e1 69.92%, #d511fd 100%)",
+              zIndex: 2,
             }}
-          />
+          >
+            <div
+              className="flex items-center justify-center"
+              style={{
+                padding: "7px 12px",
+                borderRadius: 100,
+                backgroundColor: "#111",
+                backdropFilter: "blur(6px)",
+                gap: 3,
+              }}
+            >
+              <span
+                style={{
+                  fontSize: 12.6,
+                  fontWeight: 500,
+                  lineHeight: "150%",
+                  color: "#fff",
+                  whiteSpace: "pre",
+                }}
+              >
+                Dial call
+              </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 256 256"
+                style={{ width: 10, height: 10, fill: "#fff", flexShrink: 0 }}
+              >
+                <path d="M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z" />
+              </svg>
+            </div>
+          </div>
 
           {/* Red vertical line */}
           <div
             className="absolute"
             style={{
-              bottom: 62,
-              left: 294,
+              top: "72.5%",
+              left: "50%",
+              transform: "translateX(-50%)",
               width: 1,
               height: 76,
               backgroundColor: "#ff2f2f",
+              zIndex: 1,
             }}
           />
+
+          {/* Avatar strip with gradient border + scrolling animation */}
+          <div
+            className="absolute flex items-center justify-center"
+            style={{
+              top: "86%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              padding: 2,
+              borderRadius: 100,
+              background: "linear-gradient(180deg, #ff2f2f 0%, #ef7b16 35.88%, #8a43e1 69.92%, #d511fd 100%)",
+              zIndex: 2,
+            }}
+          >
+            <div
+              className="flex items-center justify-center"
+              style={{
+                padding: "2px 6px",
+                borderRadius: 100,
+                backgroundColor: "#111",
+              }}
+            >
+              {/* Masked carousel viewport */}
+              <div
+                style={{
+                  width: 162,
+                  height: 38,
+                  overflow: "hidden",
+                  maskImage: "linear-gradient(to right, rgba(0,0,0,0) 0%, rgb(0,0,0) 12.5%, rgb(0,0,0) 87.5%, rgba(0,0,0,0) 100%)",
+                  WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,0) 0%, rgb(0,0,0) 12.5%, rgb(0,0,0) 87.5%, rgba(0,0,0,0) 100%)",
+                }}
+              >
+                <div
+                  className="flex items-center animate-avatar-scroll"
+                  style={{ gap: 6, width: "max-content" }}
+                >
+                  {/* 4 avatars repeated 4x = 16 items for seamless loop */}
+                  {Array.from({ length: 16 }, (_, i) => (
+                    <img
+                      key={i}
+                      src={`/images/avatar${(i % 4) + 1}.png`}
+                      alt=""
+                      style={{
+                        width: 36,
+                        height: 36,
+                        borderRadius: "50%",
+                        objectFit: "cover",
+                        flexShrink: 0,
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Right - Text */}
