@@ -104,11 +104,20 @@ export default function Features() {
         </div>
 
         {/* Right column: feature image */}
-        <div className="flex-1">
+        <div
+          style={{
+            width: 590,
+            height: 570,
+            flexShrink: 0,
+            borderRadius: 20,
+            overflow: "hidden",
+            boxShadow: "rgba(0,0,0,0.1) 0px 1px 1px 0px, rgba(0,0,0,0.05) 0px 3px 8px 0px",
+          }}
+        >
           <img
             src="/images/feature-woman.png"
             alt="Feature"
-            style={{ width: 590, height: 570, borderRadius: 20, objectFit: "cover" }}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
         </div>
       </div>
