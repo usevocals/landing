@@ -63,13 +63,14 @@ export default function Contact() {
               </div>
               <a
                 href="mailto:contacto@usevocals.com"
-                className="flex items-center justify-center text-white hover:opacity-80 transition-opacity"
+                className="flex items-center justify-center hover:opacity-80 transition-opacity"
                 style={{
                   backgroundColor: "#111",
                   borderRadius: 8,
                   padding: "12px 14px",
                   fontSize: 14,
                   fontWeight: 600,
+                  color: "#fff",
                 }}
               >
                 Contact us
@@ -93,13 +94,14 @@ export default function Contact() {
                 <span style={{ fontSize: 17, fontWeight: 500, color: "#111" }}>+34 682 78 45 20</span>
               </div>
               <span
-                className="flex items-center justify-center text-white hover:opacity-80 transition-opacity cursor-pointer"
+                className="flex items-center justify-center hover:opacity-80 transition-opacity cursor-pointer"
                 style={{
                   backgroundColor: "#111",
                   borderRadius: 8,
                   padding: "12px 14px",
                   fontSize: 14,
                   fontWeight: 600,
+                  color: "#fff",
                 }}
               >
                 Call us
@@ -123,7 +125,19 @@ export default function Contact() {
                 </svg>
                 <span style={{ fontSize: 17, fontWeight: 500, color: "#111" }}>Madrid/Barcelona</span>
               </div>
-              <span style={{ fontSize: 14, fontWeight: 500, color: "#4c4c4c" }}>Come to see us</span>
+              <span
+                className="flex items-center justify-center hover:opacity-80 transition-opacity cursor-pointer"
+                style={{
+                  backgroundColor: "#111",
+                  borderRadius: 8,
+                  padding: "12px 14px",
+                  fontSize: 14,
+                  fontWeight: 600,
+                  color: "#fff",
+                }}
+              >
+                Come to see us
+              </span>
             </div>
           </div>
         </div>
