@@ -57,6 +57,15 @@ body {
   animation: fade-in-up 0.7s ease-out both;
 }
 
+/* Avatar carousel scroll: 4 avatars × (36px + 6px gap) = 168px per set, scroll 2 sets = 336px */
+@keyframes avatar-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-336px); }
+}
+.animate-avatar-scroll {
+  animation: avatar-scroll 17s linear infinite;
+}
+
 .text-gradient {
   background: linear-gradient(90deg, #ff2e2e 0%, #ee7b16 36%, #8a43e1 70%, #d510fc 100%);
   -webkit-background-clip: text;
