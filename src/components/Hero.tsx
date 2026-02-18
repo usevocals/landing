@@ -1,5 +1,45 @@
 import { useState } from "react";
 
+/* 4 color blobs with 2 blur levels each */
+const blobs = [
+  { color: "rgb(138, 67, 225)", top: 207, left: 0 },
+  { color: "rgb(213, 17, 253)", top: 363, left: 37 },
+  { color: "rgb(239, 123, 22)", top: 0, left: 213 },
+  { color: "rgb(255, 47, 47)", top: 80, left: 9 },
+];
+
+function BlobGroup({ style }: { style?: React.CSSProperties }) {
+  return (
+    <div className="absolute" style={{ width: 378, height: 571, ...style }}>
+      {/* Outer container with negative offset so blobs bleed outward */}
+      <div className="absolute" style={{ width: 420, height: 571, left: -42, top: 0 }}>
+        {blobs.map((b, i) => (
+          <div key={`200-${i}`}>
+            <div
+              className="absolute"
+              style={{
+                width: 207, height: 207, borderRadius: "50%",
+                backgroundColor: b.color,
+                top: b.top, left: b.left,
+                filter: "blur(200px)",
+              }}
+            />
+            <div
+              className="absolute"
+              style={{
+                width: 207, height: 207, borderRadius: "50%",
+                backgroundColor: b.color,
+                top: b.top, left: b.left,
+                filter: "blur(100px)",
+              }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function Hero() {
   const [email, setEmail] = useState("");
 
@@ -7,95 +47,56 @@ export default function Hero() {
     <section
       id="hero"
       className="relative flex flex-col items-center justify-center text-center overflow-hidden"
-      style={{ padding: "50px 40px 100px", minHeight: 660 }}
+      style={{ padding: "50px 40px 100px", minHeight: 660, height: "100vh" }}
     >
       {/* Background with colored blurred blobs */}
       <div className="absolute inset-0 -z-10" style={{ backgroundColor: "#f4f2f1" }}>
-        {/* Colored blobs container */}
-        <div className="absolute inset-0" style={{ overflow: "hidden" }}>
-          {/* Purple blob */}
-          <div
-            className="absolute"
-            style={{
-              width: 207, height: 207, borderRadius: "50%",
-              backgroundColor: "rgb(138, 67, 225)",
-              top: 207, left: "calc(50% - 200px)",
-              filter: "blur(200px)",
-            }}
-          />
-          {/* Pink blob */}
-          <div
-            className="absolute"
-            style={{
-              width: 207, height: 207, borderRadius: "50%",
-              backgroundColor: "rgb(213, 17, 253)",
-              top: 363, left: "calc(50% - 160px)",
-              filter: "blur(200px)",
-            }}
-          />
-          {/* Orange blob */}
-          <div
-            className="absolute"
-            style={{
-              width: 207, height: 207, borderRadius: "50%",
-              backgroundColor: "rgb(239, 123, 22)",
-              top: 0, left: "calc(50% + 10px)",
-              filter: "blur(200px)",
-            }}
-          />
-          {/* Red blob */}
-          <div
-            className="absolute"
-            style={{
-              width: 207, height: 207, borderRadius: "50%",
-              backgroundColor: "rgb(255, 47, 47)",
-              top: 80, left: "calc(50% - 190px)",
-              filter: "blur(200px)",
-            }}
-          />
-          {/* Duplicate blobs with smaller blur for intensity */}
-          <div
-            className="absolute"
-            style={{
-              width: 207, height: 207, borderRadius: "50%",
-              backgroundColor: "rgb(138, 67, 225)",
-              top: 207, left: "calc(50% - 200px)",
-              filter: "blur(100px)",
-            }}
-          />
-          <div
-            className="absolute"
-            style={{
-              width: 207, height: 207, borderRadius: "50%",
-              backgroundColor: "rgb(213, 17, 253)",
-              top: 363, left: "calc(50% - 160px)",
-              filter: "blur(100px)",
-            }}
-          />
-          <div
-            className="absolute"
-            style={{
-              width: 207, height: 207, borderRadius: "50%",
-              backgroundColor: "rgb(239, 123, 22)",
-              top: 0, left: "calc(50% + 10px)",
-              filter: "blur(100px)",
-            }}
-          />
-          <div
-            className="absolute"
-            style={{
-              width: 207, height: 207, borderRadius: "50%",
-              backgroundColor: "rgb(255, 47, 47)",
-              top: 80, left: "calc(50% - 190px)",
-              filter: "blur(100px)",
-            }}
-          />
+        {/* Left blob group */}
+        <BlobGroup style={{ left: 0, top: 0 }} />
+        {/* Right blob group (mirrored) */}
+        <BlobGroup style={{ right: 0, top: 0, transform: "scale(-1, -1)" }} />
+
+        {/* Top fade */}
+        <div
+          className="absolute inset-x-0 top-0"
+          style={{
+            height: 415,
+            background: "linear-gradient(rgb(242,240,238) 0%, rgba(242,240,238,0) 100%)",
+            zIndex: 2,
+          }}
+        />
+
+        {/* Vertical stripe lines */}
+        <div
+          className="absolute flex"
+          style={{ inset: 0, zIndex: 1 }}
+        >
+          {Array.from({ length: 24 }).map((_, i) => (
+            <div
+              key={i}
+              style={{
+                flex: 1,
+                height: "100%",
+                background: "linear-gradient(270deg, rgba(242,240,238,0.2) 0%, rgba(242,240,238,0) 100%)",
+              }}
+            />
+          ))}
         </div>
+
+        {/* Bottom fade */}
+        <div
+          className="absolute inset-x-0 bottom-0"
+          style={{
+            height: "100%",
+            background: "linear-gradient(rgba(242,240,238,0) 0%, rgb(242,240,238) 100%)",
+            zIndex: 2,
+          }}
+        />
 
         {/* Noise texture overlay */}
         <div
           className="absolute inset-0"
-          style={{ mixBlendMode: "overlay", opacity: 0.75 }}
+          style={{ mixBlendMode: "overlay", opacity: 0.75, zIndex: 3 }}
         >
           <div
             className="absolute inset-0"
@@ -106,25 +107,6 @@ export default function Hero() {
             }}
           />
         </div>
-
-        {/* Top fade to bg */}
-        <div
-          className="absolute inset-x-0 top-0"
-          style={{
-            height: 415,
-            background: "linear-gradient(rgb(242,240,238) 0%, rgba(242,240,238,0) 100%)",
-            zIndex: 2,
-          }}
-        />
-        {/* Bottom fade to bg */}
-        <div
-          className="absolute inset-x-0 bottom-0"
-          style={{
-            height: "100%",
-            background: "linear-gradient(rgba(242,240,238,0) 0%, rgb(242,240,238) 100%)",
-            zIndex: 2,
-          }}
-        />
       </div>
 
       <div className="animate-fade-in-up flex flex-col items-center" style={{ gap: 40, padding: "45px 0" }}>
@@ -210,7 +192,7 @@ export default function Hero() {
               </div>
               <button
                 type="submit"
-                className="flex items-center justify-center text-white hover:opacity-90 transition-opacity"
+                className="flex items-center justify-center hover:opacity-90 transition-opacity"
                 style={{
                   backgroundColor: "#333",
                   borderRadius: 10,
@@ -218,6 +200,7 @@ export default function Hero() {
                   height: 40,
                   fontSize: 14,
                   fontWeight: 600,
+                  color: "#fff",
                 }}
               >
                 Contact
