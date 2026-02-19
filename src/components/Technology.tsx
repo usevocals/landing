@@ -50,12 +50,12 @@ export default function Technology() {
   ];
 
   return (
-    <section className="flex justify-center" style={{ padding: "70px 40px" }}>
-      <div className="flex" style={{ maxWidth: 1240, width: "100%", gap: 60 }}>
+    <section className="section-px flex justify-center" style={{ paddingTop: 70, paddingBottom: 70 }}>
+      <div className="flex flex-col md:flex-row" style={{ maxWidth: 1240, width: "100%", gap: 60 }}>
         {/* Left - Image with floating elements */}
         <div
-          className="relative"
-          style={{ width: 590, height: 507, flexShrink: 0, borderRadius: 20, overflow: "hidden" }}
+          className="relative w-full md:w-[590px]"
+          style={{ height: 507, flexShrink: 0, borderRadius: 20, overflow: "hidden" }}
         >
           <img
             src="/images/tech-woman.png"
@@ -195,7 +195,7 @@ export default function Technology() {
             </p>
             <h2
               className="font-heading"
-              style={{ fontSize: 52, fontWeight: 600, lineHeight: "62.4px", color: "#111" }}
+              style={{ fontSize: "clamp(32px, 8vw, 52px)", fontWeight: 600, lineHeight: 1.2, color: "#111" }}
             >
               {t("technology.title")}
             </h2>
