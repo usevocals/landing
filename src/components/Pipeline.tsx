@@ -4,7 +4,7 @@ const GRADIENT = "linear-gradient(180deg, #ff2f2f 0%, #ef7b16 35.88%, #8a43e1 69
 
 function StepArrow() {
   return (
-    <div className="flex items-center justify-center" style={{ flexShrink: 0 }}>
+    <div className="flex items-center justify-center" style={{ flexShrink: 0, alignSelf: "center" }}>
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ded8d3" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
         <line x1="5" y1="12" x2="19" y2="12" />
         <polyline points="13 6 19 12 13 18" />
@@ -63,7 +63,7 @@ function Step({ label, desc, providers, color = "#111", icon }: StepProps) {
           {providers}
         </p>
       )}
-      <p style={{ fontSize: 13, fontWeight: 500, color: "#4c4c4c", lineHeight: 1.5 }}>
+      <p style={{ fontSize: 13, fontWeight: 500, color: "#4c4c4c", lineHeight: 1.5, flexGrow: 1 }}>
         {desc}
       </p>
     </div>
@@ -103,10 +103,10 @@ function StatPill({ label, value }: { label: string; value: string }) {
 }
 
 // Icons
-function TwilioIcon() {
+function SipIcon() {
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" />
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.6 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.51 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.64a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
     </svg>
   );
 }
@@ -199,18 +199,19 @@ export default function Pipeline() {
             }}
           >
             {/* Desktop: horizontal row | Mobile: vertical stack */}
-            <div className="hidden md:flex items-center" style={{ gap: 10 }}>
+            <div className="hidden md:flex items-stretch" style={{ gap: 10 }}>
               <Step
-                label={t("pipeline.step_twilio")}
-                desc={t("pipeline.step_twilio_desc")}
-                color="#e7352b"
-                icon={<TwilioIcon />}
+                label={t("pipeline.step_sip")}
+                desc={t("pipeline.step_sip_desc")}
+                providers="SIP / VoIP"
+                color="#4b5563"
+                icon={<SipIcon />}
               />
               <StepArrow />
               <Step
                 label={t("pipeline.step_stt")}
                 desc={t("pipeline.step_stt_desc")}
-                providers="Deepgram · Whisper · Qwen"
+                providers="Speech-to-Text"
                 color="#2563eb"
                 icon={<MicIcon />}
               />
@@ -218,7 +219,7 @@ export default function Pipeline() {
               <Step
                 label={t("pipeline.step_llm")}
                 desc={t("pipeline.step_llm_desc")}
-                providers="OpenAI · Claude · Gemini · Kimi"
+                providers="Large Language Model"
                 color="#16a34a"
                 icon={<BrainIcon />}
               />
@@ -226,32 +227,34 @@ export default function Pipeline() {
               <Step
                 label={t("pipeline.step_tts")}
                 desc={t("pipeline.step_tts_desc")}
-                providers="ElevenLabs · OpenAI · Resemble"
+                providers="Text-to-Speech"
                 color="#7c3aed"
                 icon={<SpeakerIcon />}
               />
               <StepArrow />
               <Step
-                label={t("pipeline.step_twilio")}
-                desc={t("pipeline.step_twilio_desc")}
-                color="#e7352b"
-                icon={<TwilioIcon />}
+                label={t("pipeline.step_sip")}
+                desc={t("pipeline.step_sip_back_desc")}
+                providers="SIP / VoIP"
+                color="#4b5563"
+                icon={<SipIcon />}
               />
             </div>
 
             {/* Mobile: vertical */}
             <div className="flex md:hidden flex-col items-center" style={{ gap: 8 }}>
               <Step
-                label={t("pipeline.step_twilio")}
-                desc={t("pipeline.step_twilio_desc")}
-                color="#e7352b"
-                icon={<TwilioIcon />}
+                label={t("pipeline.step_sip")}
+                desc={t("pipeline.step_sip_desc")}
+                providers="SIP / VoIP"
+                color="#4b5563"
+                icon={<SipIcon />}
               />
               <StepArrowDown />
               <Step
                 label={t("pipeline.step_stt")}
                 desc={t("pipeline.step_stt_desc")}
-                providers="Deepgram · Whisper · Qwen"
+                providers="Speech-to-Text"
                 color="#2563eb"
                 icon={<MicIcon />}
               />
@@ -259,7 +262,7 @@ export default function Pipeline() {
               <Step
                 label={t("pipeline.step_llm")}
                 desc={t("pipeline.step_llm_desc")}
-                providers="OpenAI · Claude · Gemini · Kimi"
+                providers="Large Language Model"
                 color="#16a34a"
                 icon={<BrainIcon />}
               />
@@ -267,16 +270,17 @@ export default function Pipeline() {
               <Step
                 label={t("pipeline.step_tts")}
                 desc={t("pipeline.step_tts_desc")}
-                providers="ElevenLabs · OpenAI · Resemble"
+                providers="Text-to-Speech"
                 color="#7c3aed"
                 icon={<SpeakerIcon />}
               />
               <StepArrowDown />
               <Step
-                label={t("pipeline.step_twilio")}
-                desc={t("pipeline.step_twilio_desc")}
-                color="#e7352b"
-                icon={<TwilioIcon />}
+                label={t("pipeline.step_sip")}
+                desc={t("pipeline.step_sip_back_desc")}
+                providers="SIP / VoIP"
+                color="#4b5563"
+                icon={<SipIcon />}
               />
             </div>
 
