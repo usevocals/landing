@@ -7,6 +7,7 @@ import Features from "./components/Features";
 import Technology from "./components/Technology";
 import Marquee from "./components/Marquee";
 import Benchmark from "./components/Benchmark";
+import Orchestrator from "./components/Orchestrator";
 import Pipeline from "./components/Pipeline";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -32,6 +33,7 @@ function App({ lang }: AppProps) {
       <Hero />
       <Features />
       <Technology />
+      <Orchestrator />
       <Pipeline />
       <Marquee />
       <Benchmark />
