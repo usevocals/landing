@@ -215,7 +215,7 @@ export default function Marquee() {
           </div>
 
           {/* Scrolling items */}
-          <div style={{ height: 353, width: 620, flexShrink: 0, overflow: "hidden", maskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)" }}>
+          <div style={{ height: 353, flexShrink: 0, overflow: "hidden", maskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)", WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)" }}>
             <ul ref={ulRef} className="flex flex-col items-start" style={{ gap: 8, listStyle: "none", margin: 0, padding: 0 }}>
               {items.map((text, i) => {
                 const isActive = i % ITEM_COUNT === activeIdx;
