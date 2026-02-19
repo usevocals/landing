@@ -9,10 +9,32 @@ export default function Contact() {
     email: "",
     message: "",
   });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    window.location.href = `mailto:contacto@usevocals.com?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)}`;
+    setStatus("loading");
+    setErrorMessage("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        const data = await res.json() as { error?: string };
+        throw new Error(data.error ?? "Something went wrong");
+      }
+
+      setStatus("success");
+      setForm({ name: "", subject: "", email: "", message: "" });
+    } catch (err) {
+      setStatus("error");
+      setErrorMessage(err instanceof Error ? err.message : "Something went wrong");
+    }
   };
 
   return (
@@ -210,12 +232,12 @@ export default function Contact() {
             </div>
             <div className="flex flex-col" style={{ gap: 8 }}>
               <label style={{ fontSize: 18, fontWeight: 500, color: "#111" }}>
-                Email
+                {t("contact.label_email")}
               </label>
               <input
                 type="email"
                 required
-                placeholder="Insert your email"
+                placeholder={t("contact.placeholder_email")}
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 className="w-full outline-none"
@@ -231,12 +253,12 @@ export default function Contact() {
             </div>
             <div className="flex flex-col" style={{ gap: 8 }}>
               <label style={{ fontSize: 18, fontWeight: 500, color: "#111" }}>
-                Message
+                {t("contact.label_message")}
               </label>
               <textarea
                 required
                 rows={4}
-                placeholder="Write your message"
+                placeholder={t("contact.placeholder_message")}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
                 className="w-full outline-none resize-none"
@@ -253,7 +275,8 @@ export default function Contact() {
             <div className="flex justify-center" style={{ marginTop: 10 }}>
               <button
                 type="submit"
-                className="text-white hover:opacity-80 transition-opacity"
+                disabled={status === "loading"}
+                className="text-white hover:opacity-80 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
                   backgroundColor: "#111",
                   borderRadius: 12,
@@ -263,9 +286,19 @@ export default function Contact() {
                   fontWeight: 600,
                 }}
               >
-                {t("contact.submit")}
+                {status === "loading" ? t("contact.submit_sending") : t("contact.submit")}
               </button>
             </div>
+            {status === "success" && (
+              <p style={{ textAlign: "center", color: "#16a34a", fontSize: 15, fontWeight: 500 }}>
+                {t("contact.success_message")}
+              </p>
+            )}
+            {status === "error" && (
+              <p style={{ textAlign: "center", color: "#dc2626", fontSize: 15, fontWeight: 500 }}>
+                {errorMessage || t("contact.error_message")}
+              </p>
+            )}
           </form>
         </div>
       </div>

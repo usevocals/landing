@@ -86,7 +86,10 @@
     "placeholder_subject": "Insert subject",
     "placeholder_email": "Insert your email",
     "placeholder_message": "Write your message",
-    "submit": "Send message"
+    "submit": "Send message",
+    "submit_sending": "Sending...",
+    "success_message": "Message sent! We'll be in touch soon.",
+    "error_message": "Something went wrong. Please try again."
   },
   "footer": {
     "copyright": "© 2026 Vocals. All rights reserved.",
