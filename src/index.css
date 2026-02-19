@@ -68,3 +68,15 @@ body {
 a { text-decoration: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 input, textarea, select { font-family: inherit; }
+
+/* Responsive horizontal padding for sections */
+.section-px {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+@media (min-width: 768px) {
+  .section-px {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
