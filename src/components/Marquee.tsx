@@ -1,14 +1,5 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-
-const marqueeItems = [
-  "slow processes",
-  "saturated call centers",
-  "repetitive tasks",
-  "low engagement",
-  "incomplete data",
-  "worthless calls",
-  "eternal surveys",
-];
+import { useTranslation } from "react-i18next";
 
 /* Gradient-bordered dark circle with icon inside */
 function StatIcon({ children }: { children: ReactNode }) {
@@ -72,94 +63,118 @@ const LightningIcon = () => (
 );
 
 export default function Marquee() {
-  /* 7 unique items × 4 copies = 28 items for seamless loop */
-  const items = [...marqueeItems, ...marqueeItems, ...marqueeItems, ...marqueeItems];
-  const STEP = 72; /* item height (64px) + gap (8px) */
+  const { t } = useTranslation();
+
+  const marqueeItems = [
+    t("marquee.item1"),
+    t("marquee.item2"),
+    t("marquee.item3"),
+    t("marquee.item4"),
+    t("marquee.item5"),
+    t("marquee.item6"),
+    t("marquee.item7"),
+  ];
+
+  const ITEM_HEIGHT = 72; /* px: 64px text row + 8px gap */
   const ITEM_COUNT = marqueeItems.length; /* 7 */
+  /* Five copies so we always have items above and below; we scroll through copies 2-4
+     and reset silently when needed — the copy boundaries are invisible to the user */
+  const items = [...marqueeItems, ...marqueeItems, ...marqueeItems, ...marqueeItems, ...marqueeItems];
   const ulRef = useRef<HTMLUListElement>(null);
   const [activeIdx, setActiveIdx] = useState(0);
+  /* Start in the middle of the third copy so there's plenty of room in both directions */
+  const offsetRef = useRef(ITEM_COUNT * 2);
+
+  /* translateY that positions item[offset] at the vertical center of the 353px viewport.
+     Item center = offset * ITEM_HEIGHT + 32 (half of 64px item height).
+     Viewport center = 176.5px  →  translateY = 176.5 - (offset * ITEM_HEIGHT + 32) */
+  const CENTER_OFFSET = 144;
+  const getTranslateY = (offset: number) => CENTER_OFFSET - offset * ITEM_HEIGHT;
 
   useEffect(() => {
-    let step = 0;
-    const tick = () => {
-      if (!ulRef.current) return;
-      step++;
-      /* When we've scrolled one full set, instant jump back */
-      if (step >= ITEM_COUNT) {
-        /* Disable transition for instant reset */
-        ulRef.current.style.transition = "none";
-        step = 0;
-        ulRef.current.style.transform = `translateY(0px)`;
-        setActiveIdx(0);
-        /* Force reflow then re-enable transition for next step */
-        ulRef.current.getBoundingClientRect();
+    const ul = ulRef.current;
+    if (!ul) return;
+
+    /* Set initial position instantly */
+    ul.style.transition = "none";
+    ul.style.transform = `translateY(${getTranslateY(offsetRef.current)}px)`;
+
+    const advance = () => {
+      const ul = ulRef.current;
+      if (!ul) return;
+
+      offsetRef.current += 1;
+
+      /* Animate to the next item */
+      ul.style.transition = "transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1)";
+      ul.style.transform = `translateY(${getTranslateY(offsetRef.current)}px)`;
+      setActiveIdx(offsetRef.current % ITEM_COUNT);
+
+      /* After the animation finishes, silently teleport back to the equivalent
+         position in the middle copy — this is invisible because positions are identical */
+      if (offsetRef.current >= ITEM_COUNT * 3) {
         setTimeout(() => {
-          if (!ulRef.current) return;
-          step = 1;
-          setActiveIdx(1);
-          ulRef.current.style.transition = "transform 0.27s cubic-bezier(0.25, 0.1, 0.25, 1)";
-          ulRef.current.style.transform = `translateY(${-STEP}px)`;
-        }, 730);
-        return;
+          const ul = ulRef.current;
+          if (!ul) return;
+          offsetRef.current -= ITEM_COUNT;
+          ul.style.transition = "none";
+          ul.style.transform = `translateY(${getTranslateY(offsetRef.current)}px)`;
+        }, 320); /* slightly longer than the 300ms animation */
       }
-      ulRef.current.style.transition = "transform 0.27s cubic-bezier(0.25, 0.1, 0.25, 1)";
-      setActiveIdx(step);
-      ulRef.current.style.transform = `translateY(${-step * STEP}px)`;
     };
 
-    /* Fire every 1000ms: 270ms animate + 730ms pause */
-    const interval = setInterval(tick, 1000);
+    const interval = setInterval(advance, 1200);
     return () => clearInterval(interval);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <section className="flex justify-center" style={{ padding: "100px 40px" }}>
+    <section className="flex justify-center" style={{ padding: "70px 40px" }}>
       <div
         className="flex flex-col items-center"
         style={{ maxWidth: 1240, width: "100%", gap: 100 }}
       >
-        {/* Marquee area */}
-        <div className="relative flex items-center" style={{ width: "100%", gap: 20, height: 353 }}>
-          {/* Sparkle SVG - positioned to the left */}
-          <svg
-            width="24"
-            height="26"
-            viewBox="0 0 25 26"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            style={{ position: "absolute", top: "45%", left: -16, transform: "translateY(-50%)", zIndex: 1 }}
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M8.44 24.263c-2.266-.636-4.638-.957-6.94-1.25-.495-.062-.956.282-.991.766a.88.88 0 0 0 .744.99c2.23.283 4.532.585 6.691 1.197a.9.9 0 0 0 1.098-.61.881.881 0 0 0-.602-1.093Zm6.869-9.015c-3.647-3.722-7.754-6.964-11.33-10.786a.871.871 0 0 0-1.24-.043.87.87 0 0 0-.035 1.252c3.576 3.832 7.683 7.085 11.33 10.817a.913.913 0 0 0 1.275.011c.318-.342.354-.903 0-1.251ZM22.143.933l.318 6.39c0 .489.425.865.92.842.497-.024.85-.44.85-.928l-.318-6.4A.908.908 0 0 0 22.957 0a.881.881 0 0 0-.814.932Z"
-              fill="#111"
-            />
-          </svg>
+        {/* Marquee area — height = 5 rows × ITEM_HEIGHT so active is vertically centered */}
+        <div className="relative flex items-center justify-center" style={{ width: "100%", gap: 20, height: 353 }}>
+          {/* Left side: header text + arrow + sparkle, grouped so everything follows the text */}
+          <div className="relative flex-shrink-0" style={{ display: "flex", alignItems: "center" }}>
+            {/* Sparkle SVG - to the left of the header text */}
+            <svg
+              width="24"
+              height="26"
+              viewBox="0 0 25 26"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ position: "absolute", right: "95%", top: "50%", transform: "translateY(-130%)", marginRight: 10, zIndex: 1 }}
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M8.44 24.263c-2.266-.636-4.638-.957-6.94-1.25-.495-.062-.956.282-.991.766a.88.88 0 0 0 .744.99c2.23.283 4.532.585 6.691 1.197a.9.9 0 0 0 1.098-.61.881.881 0 0 0-.602-1.093Zm6.869-9.015c-3.647-3.722-7.754-6.964-11.33-10.786a.871.871 0 0 0-1.24-.043.87.87 0 0 0-.035 1.252c3.576 3.832 7.683 7.085 11.33 10.817a.913.913 0 0 0 1.275.011c.318-.342.354-.903 0-1.251ZM22.143.933l.318 6.39c0 .489.425.865.92.842.497-.024.85-.44.85-.928l-.318-6.4A.908.908 0 0 0 22.957 0a.881.881 0 0 0-.814.932Z"
+                fill="#111"
+              />
+            </svg>
+            <h2
+              className="font-heading"
+              style={{
+                fontSize: 52,
+                fontWeight: 600,
+                lineHeight: "62.4px",
+                color: "#111",
+              }}
+            >
+              {t("marquee.header")}
+            </h2>
 
-          {/* "Say goodbye to" */}
-          <h2
-            className="font-heading"
-            style={{
-              fontSize: 52,
-              fontWeight: 600,
-              lineHeight: "62.4px",
-              color: "#111",
-              flexShrink: 0,
-            }}
-          >
-            Say goodbye to
-          </h2>
-
-          {/* Curved arrow SVG */}
-          <svg
-            width="126"
-            height="123"
-            viewBox="0 0 155 123"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            style={{ position: "absolute", top: "39%", left: 291, transform: "translateY(-50%)", zIndex: 1 }}
-          >
+            {/* Curved arrow SVG — positioned relative to the h2 wrapper, not the whole row */}
+            <svg
+              width="126"
+              height="123"
+              viewBox="0 0 155 123"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              style={{ position: "absolute", top: "50%", left: "100%", transform: "translate(-80px, -80%)", zIndex: 1 }}
+            >
             <g filter="url(#arrow-blur)">
               <path fillOpacity=".5" fillRule="evenodd" clipRule="evenodd" fill="url(#arrow-glow)"
                 d="m135.46 81.154-.153-.102c-1.643-1.088-3.282-2.174-5.02-3.124-5.973-3.268-12.873-5.4-19.709-5.492a1.083 1.083 0 0 0-1.096 1.065 1.082 1.082 0 0 0 1.066 1.094c6.487.084 13.033 2.126 18.7 5.227 1.717.94 3.337 2.015 4.961 3.091a135.455 135.455 0 0 0 2.593 1.695c.34.224 1.058.696 1.269.767.611.212 1-.09 1.162-.254.136-.134.268-.328.331-.61.05-.231.042-.693-.101-1.308-.296-1.301-1.142-3.68-1.741-5.366-.309-.87-.553-1.556-.622-1.815-2.056-7.677-2.848-15.187-3.67-22.971-.11-1.048-.221-2.1-.336-3.16a1.085 1.085 0 0 0-1.192-.958 1.079 1.079 0 0 0-.956 1.19c.11 1.021.218 2.037.325 3.05.726 6.872 1.43 13.531 2.967 20.27-9.745-16.968-28.025-22.066-46.614-20.55-18.25 1.487-36.757 9.387-47.59 18.504.532-.99.986-1.846 1.223-2.3.365-.703.923-1.643 1.576-2.745 1.916-3.23 4.655-7.85 5.8-11.956 1.173-4.2.685-7.877-3.066-9.601-3.41-1.567-7.442-.087-11.398 3.216-8.515 7.109-16.902 22.514-18.232 27.822a1.079 1.079 0 1 0 2.095.524c1.278-5.093 9.348-19.866 17.522-26.69 3.195-2.668 6.356-4.177 9.11-2.91 2.719 1.248 2.738 4.014 1.888 7.06-1.108 3.977-3.774 8.439-5.647 11.574-.65 1.09-1.205 2.018-1.566 2.711-.29.558-.87 1.625-1.523 2.825-1.32 2.429-2.94 5.404-3.054 5.817-.215.77.294 1.14.47 1.249.136.085.844.462 1.475-.29 9-10.724 30.238-20.958 51.09-22.658 19.966-1.628 39.628 4.613 47.663 26.109Z" />
@@ -196,71 +211,83 @@ export default function Marquee() {
               </linearGradient>
             </defs>
           </svg>
+          </div>
 
-          {/* Scrolling items container */}
+          {/* Scrolling items container
+              The viewport is 353px = 5 × ITEM_HEIGHT (72px) - gap adjustment.
+              We offset the ul so the active item sits at the 3rd row (index 2),
+              which is vertically centered and aligns with "Say goodbye to".
+              The ul starts translated up by 2×ITEM_HEIGHT (offset applied via JS),
+              so the active item always renders at y = 2*72 = 144px from top,
+              which is the vertical midpoint of the 353px container. */}
           <div
             style={{
               height: 353,
-              flexGrow: 1,
+              width: 620,
               flexShrink: 0,
               overflow: "hidden",
+              /* Fade top and bottom to create depth effect */
+              maskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+              WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
             }}
           >
-            <div style={{ position: "relative", overflow: "hidden", width: "100%", height: "100%", perspective: 1200 }}>
-              <ul
-                ref={ulRef}
-                className="flex flex-col items-start"
-                style={{ gap: 8, listStyle: "none", margin: 0, padding: 0 }}
-              >
-                {items.map((text, i) => {
-                  /* Center of viewport = activeIdx + 2 (5 items visible, center is 3rd) */
-                  const centerIdx = (activeIdx + 2) % ITEM_COUNT;
-                  const isActive = i % ITEM_COUNT === centerIdx;
-                  /* Items adjacent to active get medium opacity, far items get low opacity */
-                  const dist = Math.abs((i % ITEM_COUNT) - centerIdx);
-                  const adjustedDist = dist > ITEM_COUNT / 2 ? ITEM_COUNT - dist : dist;
-                  const opacity = isActive ? 1 : adjustedDist === 1 ? 0.4 : 0.2;
-                  return (
-                    <li key={i} style={{ display: "contents" }}>
-                      <div
+            <ul
+              ref={ulRef}
+              className="flex flex-col items-start"
+              style={{
+                gap: 8,
+                listStyle: "none",
+                margin: 0,
+                padding: 0,
+              }}
+            >
+              {items.map((text, i) => {
+                const isActive = i % ITEM_COUNT === activeIdx;
+                const dist = Math.min(
+                  Math.abs((i % ITEM_COUNT) - activeIdx),
+                  ITEM_COUNT - Math.abs((i % ITEM_COUNT) - activeIdx)
+                );
+                const opacity = isActive ? 1 : dist === 1 ? 0.35 : 0.15;
+                return (
+                  <li key={i} style={{ display: "contents" }}>
+                    <div
+                      style={{
+                        height: 64,
+                        width: "100%",
+                        flexShrink: 0,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "flex-start",
+                        opacity,
+                        transition: "opacity 0.3s ease",
+                      }}
+                    >
+                      <h2
+                        className="font-heading"
                         style={{
-                          height: "calc(20% - 6.4px)",
-                          width: "100%",
-                          flexShrink: 0,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "flex-start",
-                          opacity,
-                          transition: "opacity 0.27s ease",
+                          fontSize: 52,
+                          fontWeight: 600,
+                          lineHeight: "62.4px",
+                          whiteSpace: "nowrap",
+                          ...(isActive
+                            ? {
+                                backgroundImage: "linear-gradient(90deg, #FF2E2E 0%, #EE7B16 36.28%, #8A43E1 69.75%, #D510FC 100%)",
+                                WebkitBackgroundClip: "text",
+                                backgroundClip: "text",
+                                WebkitTextFillColor: "transparent",
+                              }
+                            : {
+                                color: "#000",
+                              }),
                         }}
                       >
-                        <h2
-                          className="font-heading"
-                          style={{
-                            fontSize: 52,
-                            fontWeight: 600,
-                            lineHeight: "62.4px",
-                            whiteSpace: "nowrap",
-                            ...(isActive
-                              ? {
-                                  backgroundImage: "linear-gradient(90deg, #FF2E2E 0%, #EE7B16 36.28%, #8A43E1 69.75%, #D510FC 100%)",
-                                  WebkitBackgroundClip: "text",
-                                  backgroundClip: "text",
-                                  WebkitTextFillColor: "transparent",
-                                }
-                              : {
-                                  color: "#000",
-                                }),
-                          }}
-                        >
-                          {text}
-                        </h2>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+                        {text}
+                      </h2>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         </div>
 
@@ -324,7 +351,7 @@ export default function Marquee() {
                   +100
                 </p>
                 <p style={{ fontSize: 16, fontWeight: 500, color: "#4c4c4c", lineHeight: "24px", textAlign: "center" }}>
-                  Satisfied customers
+                  {t("marquee.stat1_label")}
                 </p>
               </div>
             </div>
@@ -337,7 +364,7 @@ export default function Marquee() {
                   500K+
                 </p>
                 <p style={{ fontSize: 16, fontWeight: 500, color: "#4c4c4c", lineHeight: "24px", textAlign: "center" }}>
-                  Completed calls
+                  {t("marquee.stat2_label")}
                 </p>
               </div>
             </div>
@@ -350,7 +377,7 @@ export default function Marquee() {
                   &gt;50%
                 </p>
                 <p style={{ fontSize: 16, fontWeight: 500, color: "#4c4c4c", lineHeight: "24px", textAlign: "center" }}>
-                  Conversion
+                  {t("marquee.stat3_label")}
                 </p>
               </div>
             </div>
@@ -363,7 +390,7 @@ export default function Marquee() {
                   &lt;14 days
                 </p>
                 <p style={{ fontSize: 16, fontWeight: 500, color: "#4c4c4c", lineHeight: "24px", textAlign: "center" }}>
-                  Full Integration
+                  {t("marquee.stat4_label")}
                 </p>
               </div>
             </div>
