@@ -1,0 +1,100 @@
+{
+  "nav": {
+    "contact": "Contacto",
+    "lang_en": "Inglés",
+    "lang_es": "Español"
+  },
+  "hero": {
+    "badge": "Llamadas exitosas de clientes",
+    "h1_line1": "Dale voz a tus clientes.",
+    "h1_line2": "A una escala infinita.",
+    "subtitle": "Una plataforma diseñada para transformar conversaciones en resultados.",
+    "email_placeholder": "nombre@email.com",
+    "cta": "Contacto"
+  },
+  "features": {
+    "header": "¿Qué puede hacer Vocals por ti?",
+    "subtitle": "Automatiza tus llamadas. Obtén respuestas reales.",
+    "item1_title": "Marcación Inteligente",
+    "item1_desc": "Marca miles de llamadas al día automáticamente, optimizando horarios y priorizando contactos con mayor probabilidad de respuesta.",
+    "item2_title": "Encuestas Dinámicas",
+    "item2_desc": "Crea flujos de preguntas personalizados que se adaptan a cada interlocutor según sus respuestas y perfil.",
+    "item3_title": "Calificación Automática",
+    "item3_desc": "Clasifica leads o casos según criterios demográficos, respuestas clave e intención detectada en la conversación.",
+    "item4_title": "Integración Instantánea",
+    "item4_desc": "Envía resultados en tiempo real a tu CRM, base de datos o herramientas internas, sin necesidad de supervisión manual."
+  },
+  "technology": {
+    "badge": "Características",
+    "title": "Tecnología que trabaja para ti",
+    "subtitle": "Automatiza llamadas, captura información a escala y mejora tus operaciones sin añadir complejidad.",
+    "point1": "Marcación masiva con IA – 500 llamadas cada 10 minutos.",
+    "point2": "Flujos de preguntas – Encuestas, verificaciones, formularios.",
+    "point3": "Análisis en tiempo real – Cada respuesta llega estructurada",
+    "point4": "100% autosuficiente - No tienes que preocuparte por nada",
+    "dial_call": "Iniciar llamada"
+  },
+  "marquee": {
+    "header": "Di adiós a",
+    "item1": "procesos lentos",
+    "item2": "centros de llamadas saturados",
+    "item3": "tareas repetitivas",
+    "item4": "bajo engagement",
+    "item5": "datos incompletos",
+    "item6": "llamadas sin valor",
+    "item7": "encuestas eternas",
+    "stat1_label": "Clientes satisfechos",
+    "stat2_label": "Llamadas completadas",
+    "stat3_label": "Conversión",
+    "stat4_label": "Integración completa"
+  },
+  "benchmark": {
+    "badge": "Benchmark",
+    "title": "¿Qué hace diferente a Vocals?",
+    "subtitle": "Descubre cómo Vocals supera a las soluciones tradicionales con automatización real, datos precisos y una experiencia radicalmente más rápida y eficiente.",
+    "other_header": "OTRAS SOLUCIONES",
+    "other1": "Llamadas manuales o semiautomáticas",
+    "other2": "Grandes equipos para gestionar el volumen",
+    "other3": "Baja tasa de respuesta por horarios mal optimizados",
+    "other4": "Encuestas rígidas y no personalizables",
+    "other5": "Calificación lenta y propensa a errores",
+    "other6": "Integraciones limitadas o inexistentes",
+    "other7": "Altos costes por llamada y por agente",
+    "vocals1": "Marcación automática a gran escala",
+    "vocals2": "Integración lista en días",
+    "vocals3": "Encuestas dinámicas y adaptativas",
+    "vocals4": "Optimización inteligente de horarios",
+    "vocals5": "Ciclos operativos ultrarrápidos",
+    "vocals6": "Integración fluida con sistemas internos",
+    "vocals7": "Organización eficiente de documentos",
+    "vocals8": "Datos estructurados en tiempo real",
+    "cta": "Contacto"
+  },
+  "contact": {
+    "badge": "Contacto",
+    "title": "Nos encantaría hablar contigo",
+    "description": "Si quieres más información, soporte o explorar cómo Vocals puede ayudar a tu negocio, estamos aquí para guiarte en cada paso.",
+    "card_email_cta": "Contáctanos",
+    "card_phone_cta": "Llámanos",
+    "card_location_cta": "Ven a vernos",
+    "form_title": "Envíanos tu consulta",
+    "label_name": "Nombre",
+    "label_subject": "Asunto",
+    "label_email": "Email",
+    "label_message": "Mensaje",
+    "placeholder_name": "Introduce tu nombre",
+    "placeholder_subject": "Introduce el asunto",
+    "placeholder_email": "Introduce tu email",
+    "placeholder_message": "Escribe tu mensaje",
+    "submit": "Enviar mensaje"
+  },
+  "footer": {
+    "copyright": "© 2026 Vocals. Todos los derechos reservados.",
+    "privacy": "Política de Privacidad"
+  },
+  "seo": {
+    "title": "Vocals - Automatización Inteligente de Llamadas",
+    "description": "Una plataforma diseñada para transformar conversaciones en resultados. Automatiza miles de llamadas al día con marcación inteligente con IA, encuestas dinámicas e integración instantánea con CRM.",
+    "og_image_alt": "Vocals - Automatización Inteligente de Llamadas"
+  }
+}
