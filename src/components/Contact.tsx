@@ -16,8 +16,8 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="flex justify-center" style={{ padding: "70px 40px" }}>
-      <div className="flex" style={{ maxWidth: 1240, width: "100%", gap: 80 }}>
+    <section id="contact" className="section-px flex justify-center" style={{ paddingTop: 70, paddingBottom: 70 }}>
+      <div className="flex flex-col md:flex-row gap-10 md:gap-[80px]" style={{ maxWidth: 1240, width: "100%" }}>
         {/* Left: info */}
         <div className="flex flex-col flex-1" style={{ gap: 30 }}>
           {/* Badge */}
@@ -35,7 +35,7 @@ export default function Contact() {
 
           <h2
             className="font-heading"
-            style={{ fontSize: 52, fontWeight: 600, lineHeight: "62.4px", color: "#111" }}
+            style={{ fontSize: "clamp(32px, 8vw, 52px)", fontWeight: 600, lineHeight: 1.2, color: "#111" }}
           >
             {t("contact.title")}
           </h2>
@@ -145,11 +145,11 @@ export default function Contact() {
 
         {/* Right: form */}
         <div
+          className="w-full md:w-[576px]"
           style={{
             backgroundColor: "#fff",
             borderRadius: 16,
             padding: 40,
-            width: 576,
             flexShrink: 0,
           }}
         >
