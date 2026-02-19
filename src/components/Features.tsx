@@ -63,10 +63,10 @@ export default function Features() {
   ];
 
   return (
-    <section className="flex justify-center" style={{ padding: "70px 40px" }}>
-      <div className="flex" style={{ maxWidth: 1240, width: "100%", gap: 60 }}>
+    <section className="section-px flex justify-center" style={{ paddingTop: 70, paddingBottom: 70 }}>
+      <div className="flex flex-col md:flex-row" style={{ maxWidth: 1240, width: "100%", gap: 60 }}>
         {/* Left column: text + feature cards */}
-        <div className="flex flex-col" style={{ width: 590, flexShrink: 0, gap: 40 }}>
+        <div className="flex flex-col w-full md:w-[590px]" style={{ flexShrink: 0, gap: 40 }}>
           {/* Header */}
           <div className="flex flex-col" style={{ gap: 10 }}>
             <p style={{ fontSize: 16, fontWeight: 500, color: "#111" }}>
@@ -74,14 +74,14 @@ export default function Features() {
             </p>
             <h2
               className="font-heading"
-              style={{ fontSize: 52, fontWeight: 600, lineHeight: "62.4px", color: "#111" }}
+              style={{ fontSize: "clamp(32px, 8vw, 52px)", fontWeight: 600, lineHeight: 1.2, color: "#111" }}
             >
               {t("features.subtitle")}
             </h2>
           </div>
 
-          {/* Feature rows */}
-          <div className="flex flex-col" style={{ gap: 20 }}>
+          {/* Feature rows — desktop: 2 per row with divider; mobile: 1 column */}
+          <div className="hidden md:flex flex-col" style={{ gap: 20 }}>
             {features.map((row, ri) => (
               <div key={ri} className="flex" style={{ gap: 30 }}>
                 {row.map((f, fi) => (
@@ -89,7 +89,7 @@ export default function Features() {
                     {fi > 0 && (
                       <div style={{ width: 1, backgroundColor: "#ded8d3", flexShrink: 0 }} />
                     )}
-                    <div className="flex flex-col" style={{ width: 265, gap: 20, color: f.color }}>
+                    <div className="flex flex-col" style={{ flex: 1, minWidth: 0, gap: 20, color: f.color }}>
                       {f.icon}
                       <div className="flex flex-col" style={{ gap: 6 }}>
                         <p style={{ fontSize: 20, fontWeight: 600, color: "#1e1e1e", lineHeight: "30px" }}>
@@ -105,12 +105,28 @@ export default function Features() {
               </div>
             ))}
           </div>
+          {/* Mobile: single column, all 4 features */}
+          <div className="flex md:hidden flex-col" style={{ gap: 30 }}>
+            {features.flat().map((f, i) => (
+              <div key={i} className="flex flex-col" style={{ gap: 16, color: f.color }}>
+                {f.icon}
+                <div className="flex flex-col" style={{ gap: 6 }}>
+                  <p style={{ fontSize: 20, fontWeight: 600, color: "#1e1e1e", lineHeight: "30px" }}>
+                    {f.title}
+                  </p>
+                  <p style={{ fontSize: 17, fontWeight: 500, color: "#4c4c4c", lineHeight: "25.5px" }}>
+                    {f.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* Right column: feature image */}
+        {/* Right column: feature image — hidden on mobile */}
         <div
+          className="hidden md:block md:w-[590px]"
           style={{
-            width: 590,
             height: 570,
             flexShrink: 0,
             borderRadius: 20,
