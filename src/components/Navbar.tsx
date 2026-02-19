@@ -21,7 +21,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className="fixed top-[20px] left-0 right-0 z-50 flex justify-center px-6">
+    <div className="fixed top-[20px] left-0 right-0 z-50 flex justify-center px-4 md:px-6">
       <nav
         className="flex items-center justify-between w-full transition-all duration-300"
         style={{

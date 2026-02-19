@@ -3,9 +3,9 @@ import { useTranslation } from "react-i18next";
 export default function Footer() {
   const { t } = useTranslation();
   return (
-    <footer style={{ backgroundColor: "#111", padding: "70px 40px 0" }}>
+    <footer className="section-px" style={{ backgroundColor: "#111", paddingTop: 70, paddingBottom: 0 }}>
       <div
-        className="flex items-center justify-between"
+        className="flex flex-col md:flex-row items-center md:justify-between gap-4"
         style={{
           maxWidth: 1240,
           margin: "0 auto",
