@@ -34,6 +34,20 @@
     "point4": "100% self-sufficient – Set it up once, let it run.",
     "dial_call": "Dial call"
   },
+  "orchestrator": {
+    "badge": "The Vocals Orchestrator",
+    "title": "One platform to connect all your AI tools.",
+    "subtitle": "Vocals sits between your phone system and your AI providers, routing every call through the best tools for the job — automatically, in real time.",
+    "byok_eyebrow": "Bring Your Own Keys",
+    "byok_title": "Your API keys. Your providers. Zero markup.",
+    "byok_desc": "Connect your own accounts from OpenAI, ElevenLabs, Deepgram, Anthropic, or any supported provider. Vocals orchestrates them — you keep full control over your costs and your data. No hidden fees, no vendor lock-in.",
+    "card1_title": "No surprise bills",
+    "card1_desc": "You pay your providers directly at their standard rates. Vocals never adds a markup on top of your AI usage.",
+    "card2_title": "Swap providers anytime",
+    "card2_desc": "Change your voice, language model, or transcription engine from the dashboard — no code changes, no downtime.",
+    "card3_title": "Your data stays yours",
+    "card3_desc": "Your API keys are encrypted at rest. Transcripts and call data are stored under your account only."
+  },
   "pipeline": {
     "badge": "How it works",
     "title": "The full voice pipeline, in real time.",

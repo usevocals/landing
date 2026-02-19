@@ -34,6 +34,20 @@
     "point4": "100% autosuficiente – Configúralo una vez y déjalo funcionar.",
     "dial_call": "Iniciar llamada"
   },
+  "orchestrator": {
+    "badge": "El orquestador de Vocals",
+    "title": "Una plataforma para conectar todas tus herramientas de IA.",
+    "subtitle": "Vocals se sitúa entre tu sistema telefónico y tus proveedores de IA, enrutando cada llamada a través de las mejores herramientas para cada tarea — automáticamente, en tiempo real.",
+    "byok_eyebrow": "Trae tus propias claves",
+    "byok_title": "Tus claves API. Tus proveedores. Sin sobrecoste.",
+    "byok_desc": "Conecta tus propias cuentas de OpenAI, ElevenLabs, Deepgram, Anthropic o cualquier proveedor compatible. Vocals los orquesta — tú mantienes el control total sobre tus costes y tus datos. Sin tarifas ocultas, sin dependencias.",
+    "card1_title": "Sin facturas sorpresa",
+    "card1_desc": "Pagas a tus proveedores directamente a sus tarifas estándar. Vocals nunca añade un sobrecoste sobre tu uso de IA.",
+    "card2_title": "Cambia de proveedor cuando quieras",
+    "card2_desc": "Cambia tu voz, modelo de lenguaje o motor de transcripción desde el panel — sin cambios de código, sin tiempo de inactividad.",
+    "card3_title": "Tus datos son tuyos",
+    "card3_desc": "Tus claves API están cifradas en reposo. Las transcripciones y los datos de llamadas se almacenan únicamente bajo tu cuenta."
+  },
   "pipeline": {
     "badge": "Cómo funciona",
     "title": "El pipeline de voz completo, en tiempo real.",
