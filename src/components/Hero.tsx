@@ -48,8 +48,8 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex flex-col items-center justify-center text-center overflow-hidden"
-      style={{ padding: "50px 40px 100px", minHeight: 660, height: "100vh" }}
+      className="section-px relative flex flex-col items-center justify-center text-center overflow-hidden"
+      style={{ paddingTop: 50, paddingBottom: 100, minHeight: 660, height: "100vh" }}
     >
       {/* Background with colored blurred blobs */}
       <div className="absolute inset-0 -z-10" style={{ backgroundColor: "#f4f2f1" }}>
@@ -137,9 +137,9 @@ export default function Hero() {
           <h1
             className="font-heading"
             style={{
-              fontSize: 64,
+              fontSize: "clamp(36px, 9vw, 64px)",
               fontWeight: 600,
-              lineHeight: "76.8px",
+              lineHeight: 1.2,
               color: "#111",
               textAlign: "center",
               maxWidth: 847,
@@ -152,7 +152,7 @@ export default function Hero() {
         </div>
 
         {/* Subtitle + Form area */}
-        <div className="flex flex-col items-center" style={{ gap: 20, width: 800 }}>
+        <div className="flex flex-col items-center w-full" style={{ gap: 20, maxWidth: 800 }}>
           <p
             style={{
               fontSize: 18,
