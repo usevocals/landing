@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 /* 4 color blobs with 2 blur levels each */
 const blobs = [
@@ -42,6 +43,7 @@ function BlobGroup({ style }: { style?: React.CSSProperties }) {
 
 export default function Hero() {
   const [email, setEmail] = useState("");
+  const { t } = useTranslation();
 
   return (
     <section
@@ -127,7 +129,7 @@ export default function Hero() {
               +100.000
             </span>
             <span style={{ fontSize: 17, fontWeight: 500, color: "#000" }}>
-              Successful customer calls
+              {t("hero.badge")}
             </span>
           </div>
 
@@ -143,9 +145,9 @@ export default function Hero() {
               maxWidth: 847,
             }}
           >
-            Give your customers a voice.
+            {t("hero.h1_line1")}
             <br />
-            On an infinite scale.
+            {t("hero.h1_line2")}
           </h1>
         </div>
 
@@ -159,7 +161,7 @@ export default function Hero() {
               lineHeight: "27px",
             }}
           >
-            A platform designed to transform conversations into results.
+            {t("hero.subtitle")}
           </p>
 
           <div className="flex flex-col items-center" style={{ gap: 16 }}>
@@ -185,7 +187,7 @@ export default function Hero() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@email.com"
+                  placeholder={t("hero.email_placeholder")}
                   className="w-full h-full bg-transparent outline-none text-center"
                   style={{ fontSize: 14, padding: 12, color: "#999" }}
                 />
@@ -203,7 +205,7 @@ export default function Hero() {
                   color: "#fff",
                 }}
               >
-                Contact
+                {t("hero.cta")}
               </button>
             </form>
           </div>

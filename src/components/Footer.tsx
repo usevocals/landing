@@ -1,6 +1,9 @@
+import { useTranslation } from "react-i18next";
+
 export default function Footer() {
+  const { t } = useTranslation();
   return (
-    <footer style={{ backgroundColor: "#111", padding: "100px 40px 0" }}>
+    <footer style={{ backgroundColor: "#111", padding: "70px 40px 0" }}>
       <div
         className="flex items-center justify-between"
         style={{
@@ -11,14 +14,14 @@ export default function Footer() {
         }}
       >
         <p style={{ fontSize: 17, fontWeight: 500, color: "#808080" }}>
-          &copy; 2025 Vocals. All rights reserved.
+          {t("footer.copyright")}
         </p>
         <a
           href="/privacy-policy"
           className="hover:opacity-80 transition-opacity"
           style={{ fontSize: 17, fontWeight: 500, color: "#808080" }}
         >
-          Privacy Policy
+          {t("footer.privacy")}
         </a>
       </div>
     </footer>

@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function Contact() {
+  const { t } = useTranslation();
   const [form, setForm] = useState({
     name: "",
     subject: "",
@@ -14,7 +16,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="flex justify-center" style={{ padding: "100px 40px" }}>
+    <section id="contact" className="flex justify-center" style={{ padding: "70px 40px" }}>
       <div className="flex" style={{ maxWidth: 1240, width: "100%", gap: 80 }}>
         {/* Left: info */}
         <div className="flex flex-col flex-1" style={{ gap: 30 }}>
@@ -28,18 +30,17 @@ export default function Contact() {
               width: "fit-content",
             }}
           >
-            <span style={{ fontSize: 16, fontWeight: 500, color: "#111" }}>Contact</span>
+            <span style={{ fontSize: 16, fontWeight: 500, color: "#111" }}>{t("contact.badge")}</span>
           </div>
 
           <h2
             className="font-heading"
             style={{ fontSize: 52, fontWeight: 600, lineHeight: "62.4px", color: "#111" }}
           >
-            We would love to talk to you
+            {t("contact.title")}
           </h2>
           <p style={{ fontSize: 17, fontWeight: 500, color: "#4c4c4c", lineHeight: "25.5px", maxWidth: 460 }}>
-            If you want more information, support, or to explore how Vocals can
-            help your business, we're here to guide you every step of the way.
+            {t("contact.description")}
           </p>
 
           {/* Contact cards */}
@@ -73,7 +74,7 @@ export default function Contact() {
                   color: "#fff",
                 }}
               >
-                Contact us
+                {t("contact.card_email_cta")}
               </a>
             </div>
 
@@ -104,7 +105,7 @@ export default function Contact() {
                   color: "#fff",
                 }}
               >
-                Call us
+                {t("contact.card_phone_cta")}
               </span>
             </div>
 
@@ -136,7 +137,7 @@ export default function Contact() {
                   color: "#fff",
                 }}
               >
-                Come to see us
+                {t("contact.card_location_cta")}
               </span>
             </div>
           </div>
@@ -161,18 +162,18 @@ export default function Contact() {
               fontFamily: "var(--font-body)",
             }}
           >
-            Send us your inquiry
+            {t("contact.form_title")}
           </h4>
           <form onSubmit={handleSubmit} className="flex flex-col" style={{ gap: 20 }}>
             <div className="flex" style={{ gap: 16 }}>
               <div className="flex flex-col flex-1" style={{ gap: 8 }}>
                 <label style={{ fontSize: 18, fontWeight: 500, color: "#111" }}>
-                  Name
+                  {t("contact.label_name")}
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="Insert name"
+                  placeholder={t("contact.placeholder_name")}
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                   className="w-full outline-none"
@@ -188,11 +189,11 @@ export default function Contact() {
               </div>
               <div className="flex flex-col flex-1" style={{ gap: 8 }}>
                 <label style={{ fontSize: 18, fontWeight: 500, color: "#111" }}>
-                  Subject
+                  {t("contact.label_subject")}
                 </label>
                 <input
                   type="text"
-                  placeholder="Insert subject"
+                  placeholder={t("contact.placeholder_subject")}
                   value={form.subject}
                   onChange={(e) => setForm({ ...form, subject: e.target.value })}
                   className="w-full outline-none"
@@ -262,7 +263,7 @@ export default function Contact() {
                   fontWeight: 600,
                 }}
               >
-                Send message
+                {t("contact.submit")}
               </button>
             </div>
           </form>

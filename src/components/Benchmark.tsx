@@ -1,23 +1,4 @@
-const otherSolutions = [
-  "Manual or semi-automatic calls",
-  "Large teams to manage volume",
-  "Low response rate due to poorly optimized schedules",
-  "Rigid and non-customizable surveys",
-  "Slow and error-prone qualification",
-  "Limited or non-existent integrations",
-  "High costs per call and per agent",
-];
-
-const vocalsSolutions = [
-  "Large-scale automatic dialing",
-  "Integration ready in days",
-  "Dynamic and adaptive surveys",
-  "Intelligent scheduling optimization",
-  "Ultra-fast operating cycles",
-  "Seamless integration with internal systems",
-  "Efficient Document Organization",
-  "Real-time structured data",
-];
+import { useTranslation } from "react-i18next";
 
 /* Phosphor duotone mask-sad icon used for "Other Solutions" items */
 function MaskIcon() {
@@ -87,8 +68,31 @@ function GradientCheckIcon() {
 }
 
 export default function Benchmark() {
+  const { t } = useTranslation();
+
+  const otherSolutions = [
+    t("benchmark.other1"),
+    t("benchmark.other2"),
+    t("benchmark.other3"),
+    t("benchmark.other4"),
+    t("benchmark.other5"),
+    t("benchmark.other6"),
+    t("benchmark.other7"),
+  ];
+
+  const vocalsSolutions = [
+    t("benchmark.vocals1"),
+    t("benchmark.vocals2"),
+    t("benchmark.vocals3"),
+    t("benchmark.vocals4"),
+    t("benchmark.vocals5"),
+    t("benchmark.vocals6"),
+    t("benchmark.vocals7"),
+    t("benchmark.vocals8"),
+  ];
+
   return (
-    <section className="flex justify-center" style={{ padding: "100px 40px" }}>
+    <section className="flex justify-center" style={{ padding: "70px 40px" }}>
       <div
         className="flex flex-col items-center"
         style={{ maxWidth: 1000, width: "100%", gap: 80 }}
@@ -96,7 +100,7 @@ export default function Benchmark() {
         {/* Header */}
         <div className="flex flex-col items-center" style={{ gap: 14 }}>
           <p style={{ fontSize: 16, fontWeight: 500, color: "#111" }}>
-            Benchmark
+            {t("benchmark.badge")}
           </p>
           <h2
             className="font-heading"
@@ -108,7 +112,7 @@ export default function Benchmark() {
               textAlign: "center",
             }}
           >
-            What makes Vocals different?
+            {t("benchmark.title")}
           </h2>
           <p
             style={{
@@ -120,9 +124,7 @@ export default function Benchmark() {
               maxWidth: 700,
             }}
           >
-            Discover how Vocals outperforms traditional solutions with true
-            automation, accurate data, and a radically faster and more efficient
-            experience.
+            {t("benchmark.subtitle")}
           </p>
         </div>
 
@@ -132,12 +134,12 @@ export default function Benchmark() {
           <div style={{ width: 460, borderRadius: 20, backgroundColor: "#e8e4e2", padding: 2 }}>
             <div style={{ padding: "30px 24px" }}>
               <p style={{ fontSize: 24, fontWeight: 700, color: "#1e1e1e", textAlign: "center" }}>
-                OTHER SOLUTIONS
+                {t("benchmark.other_header")}
               </p>
             </div>
             <div className="flex flex-col" style={{ padding: "30px", gap: 20 }}>
-              {otherSolutions.map((item) => (
-                <div key={item} className="flex items-start" style={{ gap: 12 }}>
+              {otherSolutions.map((item, i) => (
+                <div key={i} className="flex items-start" style={{ gap: 12 }}>
                   <MaskIcon />
                   <span style={{ fontSize: 18, fontWeight: 500, color: "#4c4c4c", lineHeight: "27px" }}>
                     {item}
@@ -190,8 +192,8 @@ export default function Benchmark() {
                 className="flex flex-col"
                 style={{ padding: "24px 30px", gap: 20 }}
               >
-              {vocalsSolutions.map((item) => (
-                <div key={item} className="flex items-start" style={{ gap: 12 }}>
+              {vocalsSolutions.map((item, i) => (
+                <div key={i} className="flex items-start" style={{ gap: 12 }}>
                   <GradientCheckIcon />
                   <span style={{ fontSize: 18, fontWeight: 500, color: "#4c4c4c", lineHeight: "27px" }}>
                     {item}
@@ -216,7 +218,7 @@ export default function Benchmark() {
             color: "#fff",
           }}
         >
-          Contact
+          {t("benchmark.cta")}
         </a>
       </div>
     </section>

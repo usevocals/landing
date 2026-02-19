@@ -1,9 +1,4 @@
-const points = [
-  "AI-powered mass dialing – 500 calls every 10 minutes.",
-  "Question flows – Surveys, verifications, forms.",
-  "Real-time analysis – Each response arrives structured",
-  "100% self-sufficient - You don't have to worry about anything",
-];
+import { useTranslation } from "react-i18next";
 
 function GradientCheckIcon() {
   return (
@@ -45,8 +40,17 @@ function GradientCheckIcon() {
 }
 
 export default function Technology() {
+  const { t } = useTranslation();
+
+  const points = [
+    t("technology.point1"),
+    t("technology.point2"),
+    t("technology.point3"),
+    t("technology.point4"),
+  ];
+
   return (
-    <section className="flex justify-center" style={{ padding: "100px 40px" }}>
+    <section className="flex justify-center" style={{ padding: "70px 40px" }}>
       <div className="flex" style={{ maxWidth: 1240, width: "100%", gap: 60 }}>
         {/* Left - Image with floating elements */}
         <div
@@ -91,7 +95,7 @@ export default function Technology() {
                   whiteSpace: "pre",
                 }}
               >
-                Dial call
+                {t("technology.dial_call")}
               </span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -187,23 +191,22 @@ export default function Technology() {
                 width: "fit-content",
               }}
             >
-              Features
+              {t("technology.badge")}
             </p>
             <h2
               className="font-heading"
               style={{ fontSize: 52, fontWeight: 600, lineHeight: "62.4px", color: "#111" }}
             >
-              Technology that works for you
+              {t("technology.title")}
             </h2>
             <p style={{ fontSize: 17, fontWeight: 500, color: "#4c4c4c", lineHeight: "25.5px" }}>
-              Automate calls, capture information at scale, and improve your
-              operations without adding complexity.
+              {t("technology.subtitle")}
             </p>
           </div>
 
           <div className="flex flex-col" style={{ gap: 14 }}>
-            {points.map((p) => (
-              <div key={p} className="flex items-center" style={{ gap: 10 }}>
+            {points.map((p, i) => (
+              <div key={i} className="flex items-center" style={{ gap: 10 }}>
                 <GradientCheckIcon />
                 <span style={{ fontSize: 18, fontWeight: 500, color: "#4c4c4c", lineHeight: "27px" }}>
                   {p}

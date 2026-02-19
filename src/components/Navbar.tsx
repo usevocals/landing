@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { useTranslation } from "react-i18next";
+import { useLanguage } from "../hooks/useLanguage";
 
 const GlobeIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" style={{ width: 16, height: 16, fill: "#111" }}>
@@ -9,7 +11,8 @@ const GlobeIcon = () => (
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [lang, setLang] = useState("en");
+  const { t } = useTranslation();
+  const { currentLang, switchLanguage } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -31,13 +34,13 @@ export default function Navbar() {
           boxShadow: scrolled ? "0 4px 8px rgba(0,0,0,0.05)" : "none",
         }}
       >
-        <a href="#hero">
+        <a href={`/${currentLang}#hero`}>
           <img src="/images/logo.png" alt="Vocals" className="w-[120px]" />
         </a>
 
         <div className="flex items-center gap-3">
           <a
-            href="#contact"
+            href={`/${currentLang}#contact`}
             className="flex items-center justify-center hover:opacity-90 transition-opacity"
             style={{
               backgroundColor: "#111",
@@ -49,7 +52,7 @@ export default function Navbar() {
               color: "#fff",
             }}
           >
-            Contact
+            {t("nav.contact")}
           </a>
 
           <DropdownMenu.Root>
@@ -62,7 +65,7 @@ export default function Navbar() {
                   width: 35,
                   height: 35,
                 }}
-                aria-label={lang === "en" ? "English" : "Spanish"}
+                aria-label={currentLang === "en" ? t("nav.lang_en") : t("nav.lang_es")}
               >
                 <GlobeIcon />
               </button>
@@ -82,32 +85,32 @@ export default function Navbar() {
                 }}
               >
                 <DropdownMenu.Item
-                  onSelect={() => setLang("en")}
+                  onSelect={() => switchLanguage("en")}
                   className="outline-none cursor-pointer"
                   style={{
                     padding: "8px 12px",
                     borderRadius: 6,
                     fontSize: 14,
-                    fontWeight: lang === "en" ? 600 : 400,
+                    fontWeight: currentLang === "en" ? 600 : 400,
                     color: "#111",
-                    backgroundColor: lang === "en" ? "#f4f2f1" : "transparent",
+                    backgroundColor: currentLang === "en" ? "#f4f2f1" : "transparent",
                   }}
                 >
-                  English
+                  {t("nav.lang_en")}
                 </DropdownMenu.Item>
                 <DropdownMenu.Item
-                  onSelect={() => setLang("es")}
+                  onSelect={() => switchLanguage("es")}
                   className="outline-none cursor-pointer"
                   style={{
                     padding: "8px 12px",
                     borderRadius: 6,
                     fontSize: 14,
-                    fontWeight: lang === "es" ? 600 : 400,
+                    fontWeight: currentLang === "es" ? 600 : 400,
                     color: "#111",
-                    backgroundColor: lang === "es" ? "#f4f2f1" : "transparent",
+                    backgroundColor: currentLang === "es" ? "#f4f2f1" : "transparent",
                   }}
                 >
-                  Spanish
+                  {t("nav.lang_es")}
                 </DropdownMenu.Item>
               </DropdownMenu.Content>
             </DropdownMenu.Portal>
