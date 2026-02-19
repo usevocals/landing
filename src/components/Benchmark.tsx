@@ -92,7 +92,7 @@ export default function Benchmark() {
   ];
 
   return (
-    <section className="flex justify-center" style={{ padding: "70px 40px" }}>
+    <section className="section-px flex justify-center" style={{ paddingTop: 70, paddingBottom: 70 }}>
       <div
         className="flex flex-col items-center"
         style={{ maxWidth: 1000, width: "100%", gap: 80 }}
@@ -105,9 +105,9 @@ export default function Benchmark() {
           <h2
             className="font-heading"
             style={{
-              fontSize: 52,
+              fontSize: "clamp(32px, 8vw, 52px)",
               fontWeight: 600,
-              lineHeight: "62.4px",
+              lineHeight: 1.2,
               color: "#111",
               textAlign: "center",
             }}
@@ -129,9 +129,9 @@ export default function Benchmark() {
         </div>
 
         {/* Cards row */}
-        <div className="relative flex" style={{ gap: 80 }}>
+        <div className="relative flex flex-col md:flex-row gap-10 md:gap-[80px]">
           {/* Other solutions card */}
-          <div style={{ width: 460, borderRadius: 20, backgroundColor: "#e8e4e2", padding: 2 }}>
+          <div style={{ flex: 1, borderRadius: 20, backgroundColor: "#e8e4e2", padding: 2 }}>
             <div style={{ padding: "30px 24px" }}>
               <p style={{ fontSize: 24, fontWeight: 700, color: "#1e1e1e", textAlign: "center" }}>
                 {t("benchmark.other_header")}
@@ -169,7 +169,7 @@ export default function Benchmark() {
           {/* Vocals card - gradient border */}
           <div
             style={{
-              width: 460,
+              flex: 1,
               borderRadius: 20,
               padding: 2,
               background: "linear-gradient(180deg, rgb(255,47,47) 0%, rgb(239,123,22) 35.88%, rgb(138,67,225) 69.92%, rgb(213,17,253) 100%)",
