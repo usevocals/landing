@@ -9,6 +9,7 @@ import Marquee from "./components/Marquee";
 import Benchmark from "./components/Benchmark";
 import Orchestrator from "./components/Orchestrator";
 import Pipeline from "./components/Pipeline";
+import Providers from "./components/Providers";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
@@ -35,6 +36,7 @@ function App({ lang }: AppProps) {
       <Technology />
       <Orchestrator />
       <Pipeline />
+      <Providers />
       <Marquee />
       <Benchmark />
       <Contact />

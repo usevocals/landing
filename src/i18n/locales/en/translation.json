@@ -70,6 +70,21 @@
     "byok_label": "Bring Your Own Keys",
     "byok_desc": "Your API keys, your costs. No markup."
   },
+  "providers": {
+    "badge": "Compatible Providers",
+    "title": "Choose your providers. Or use ours.",
+    "subtitle": "Every provider in the pipeline is swappable. Use the ones included in your Vocals plan, or bring your own API keys — zero lock-in.",
+    "included_label": "Included with Vocals",
+    "byok_label": "Bring Your Own Key",
+    "stt_title": "Speech-to-Text",
+    "llm_title": "AI Model",
+    "tts_title": "Text-to-Speech",
+    "stt_providers": "Deepgram, Whisper, OpenAI, ElevenLabs, Qwen",
+    "llm_providers": "OpenAI, Claude, Google, Kimi",
+    "tts_providers": "Deepgram, OpenAI, ElevenLabs, Qwen, Resemble",
+    "included_desc": "Ready out of the box — managed API keys, optimized defaults, and no extra setup.",
+    "byok_desc": "Plug in your own API keys and pay providers directly. Full control, zero markup."
+  },
   "marquee": {
     "header": "Say goodbye to",
     "item1": "slow processes",

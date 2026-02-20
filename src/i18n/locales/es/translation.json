@@ -70,6 +70,21 @@
     "byok_label": "Trae tus propias claves",
     "byok_desc": "Tus claves API, tus costes. Sin sobrecoste."
   },
+  "providers": {
+    "badge": "Proveedores compatibles",
+    "title": "Elige tus proveedores. O usa los nuestros.",
+    "subtitle": "Cada proveedor del pipeline es intercambiable. Usa los incluidos en tu plan de Vocals o trae tus propias claves API — sin dependencias.",
+    "included_label": "Incluido con Vocals",
+    "byok_label": "Trae tu propia clave",
+    "stt_title": "Speech-to-Text",
+    "llm_title": "Modelo de IA",
+    "tts_title": "Text-to-Speech",
+    "stt_providers": "Deepgram, Whisper, OpenAI, ElevenLabs, Qwen",
+    "llm_providers": "OpenAI, Claude, Google, Kimi",
+    "tts_providers": "Deepgram, OpenAI, ElevenLabs, Qwen, Resemble",
+    "included_desc": "Listo para usar — claves API gestionadas, configuración optimizada y sin setup adicional.",
+    "byok_desc": "Conecta tus propias claves API y paga directamente a los proveedores. Control total, sin sobrecoste."
+  },
   "marquee": {
     "header": "Di adiós a",
     "item1": "procesos lentos",
