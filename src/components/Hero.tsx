@@ -208,6 +208,17 @@ export default function Hero() {
                 {t("hero.cta")}
               </button>
             </form>
+            <p style={{ fontSize: 14, fontWeight: 500, color: "#999" }}>
+              {t("hero.login_prompt")}{" "}
+              <a
+                href="https://dashboard.usevocals.com/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#111", fontWeight: 600, textDecoration: "underline" }}
+              >
+                {t("hero.login_link")}
+              </a>
+            </p>
           </div>
         </div>
       </div>
