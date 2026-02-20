@@ -126,7 +126,7 @@ export default function Hero() {
             }}
           >
             <span className="text-gradient" style={{ fontSize: 17, fontWeight: 500 }}>
-              +100.000
+              +500.000
             </span>
             <span style={{ fontSize: 17, fontWeight: 500, color: "#000" }}>
               {t("hero.badge")}
@@ -208,6 +208,17 @@ export default function Hero() {
                 {t("hero.cta")}
               </button>
             </form>
+            <p style={{ fontSize: 14, fontWeight: 500, color: "#999" }}>
+              {t("hero.login_prompt")}{" "}
+              <a
+                href="https://dashboard.usevocals.com/login"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "#111", fontWeight: 600, textDecoration: "underline" }}
+              >
+                {t("hero.login_link")}
+              </a>
+            </p>
           </div>
         </div>
       </div>

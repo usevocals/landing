@@ -64,12 +64,20 @@ export default function Features() {
 
   return (
     <section className="section-px flex justify-center" style={{ paddingTop: 70, paddingBottom: 70 }}>
-      <div className="flex flex-col md:flex-row" style={{ maxWidth: 1240, width: "100%", gap: 60 }}>
+      <div className="flex flex-col md:flex-row" style={{ maxWidth: 1240, width: "100%", gap: 60, alignItems: "center" }}>
         {/* Left column: text + feature cards */}
         <div className="flex flex-col w-full md:w-[590px]" style={{ flexShrink: 0, gap: 40 }}>
           {/* Header */}
           <div className="flex flex-col" style={{ gap: 10 }}>
-            <p style={{ fontSize: 16, fontWeight: 500, color: "#111" }}>
+            <p style={{
+              fontSize: 16,
+              fontWeight: 500,
+              color: "#111",
+              backgroundColor: "#fff",
+              borderRadius: 100,
+              padding: "6px 14px",
+              width: "fit-content",
+            }}>
               {t("features.header")}
             </p>
             <h2
@@ -85,7 +93,7 @@ export default function Features() {
             {features.map((row, ri) => (
               <div key={ri} className="flex" style={{ gap: 30 }}>
                 {row.map((f, fi) => (
-                  <div key={fi} className="flex" style={{ gap: 30 }}>
+                  <div key={fi} className="flex" style={{ gap: 30, width: "45%" }}>
                     {fi > 0 && (
                       <div style={{ width: 1, backgroundColor: "#ded8d3", flexShrink: 0 }} />
                     )}

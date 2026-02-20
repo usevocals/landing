@@ -40,6 +40,24 @@ export default function Navbar() {
 
         <div className="flex items-center gap-3">
           <a
+            href="https://dashboard.usevocals.com/login"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center hover:opacity-90 transition-opacity"
+            style={{
+              backgroundColor: "transparent",
+              border: "1.5px solid #111",
+              borderRadius: 8,
+              padding: "12px 14px",
+              height: 39,
+              fontSize: 14,
+              fontWeight: 600,
+              color: "#111",
+            }}
+          >
+            {t("nav.login")}
+          </a>
+          <a
             href={`/${currentLang}#contact`}
             className="flex items-center justify-center hover:opacity-90 transition-opacity"
             style={{

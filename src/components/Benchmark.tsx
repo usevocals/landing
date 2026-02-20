@@ -99,7 +99,15 @@ export default function Benchmark() {
       >
         {/* Header */}
         <div className="flex flex-col items-center" style={{ gap: 14 }}>
-          <p style={{ fontSize: 16, fontWeight: 500, color: "#111" }}>
+          <p style={{
+              fontSize: 16,
+              fontWeight: 500,
+              color: "#111",
+              backgroundColor: "#fff",
+              borderRadius: 100,
+              padding: "6px 14px",
+              width: "fit-content",
+            }}>
             {t("benchmark.badge")}
           </p>
           <h2
