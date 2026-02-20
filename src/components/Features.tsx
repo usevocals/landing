@@ -69,7 +69,15 @@ export default function Features() {
         <div className="flex flex-col w-full md:w-[590px]" style={{ flexShrink: 0, gap: 40 }}>
           {/* Header */}
           <div className="flex flex-col" style={{ gap: 10 }}>
-            <p style={{ fontSize: 16, fontWeight: 500, color: "#111" }}>
+            <p style={{
+              fontSize: 16,
+              fontWeight: 500,
+              color: "#111",
+              backgroundColor: "#fff",
+              borderRadius: 100,
+              padding: "6px 14px",
+              width: "fit-content",
+            }}>
               {t("features.header")}
             </p>
             <h2
