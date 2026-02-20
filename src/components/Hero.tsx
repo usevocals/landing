@@ -126,7 +126,7 @@ export default function Hero() {
             }}
           >
             <span className="text-gradient" style={{ fontSize: 17, fontWeight: 500 }}>
-              +100.000
+              +500.000
             </span>
             <span style={{ fontSize: 17, fontWeight: 500, color: "#000" }}>
               {t("hero.badge")}
