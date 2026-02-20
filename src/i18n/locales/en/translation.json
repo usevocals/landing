@@ -1,6 +1,7 @@
 {
   "nav": {
     "contact": "Contact",
+    "login": "Log in",
     "lang_en": "English",
     "lang_es": "Spanish"
   },
@@ -10,7 +11,9 @@
     "h1_line2": "On an infinite scale.",
     "subtitle": "An AI-powered platform that turns every call into a real conversation — and every conversation into results.",
     "email_placeholder": "name@email.com",
-    "cta": "Contact"
+    "cta": "Contact",
+    "login_prompt": "Already have an account?",
+    "login_link": "Log in to the dashboard"
   },
   "features": {
     "header": "What can Vocals do for you?",

@@ -1,6 +1,7 @@
 {
   "nav": {
     "contact": "Contacto",
+    "login": "Iniciar sesión",
     "lang_en": "Inglés",
     "lang_es": "Español"
   },
@@ -10,7 +11,9 @@
     "h1_line2": "A una escala infinita.",
     "subtitle": "Una plataforma impulsada por IA para transformar conversaciones en resultados.",
     "email_placeholder": "nombre@email.com",
-    "cta": "Contacto"
+    "cta": "Contacto",
+    "login_prompt": "¿Ya tienes cuenta?",
+    "login_link": "Accede al dashboard"
   },
   "features": {
     "header": "¿Qué puede hacer Vocals por ti?",
